@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 20 - Async JavaScript & APIs</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./app.js"></script>
+</head>
+<body>
+
+    <main class="container">
+        <header>
+            <h1>Day 20 - Async JavaScript & APIs</h1>
+            <p>Fetch, async/await, error handling and Promise.all</p>
+        </header>
+
+        <section class="card">
+            <h2>Exercise 1</h2>
+            <p>USD → ETB Exchange Rate</p>
+            <button id="rateBtn">Get USD → ETB Rate</button>
+            <div id="rateResult"></div>
+        </section>
+
+        <section class="card">
+            <h2>Exercise 2</h2>
+            <p>Async/Await Country Data</p>
+            <button id="countryBtn">Load Ethiopia</button>
+            <div id="countryResult"></div>
+        </section>
+
+        <section class="card">
+            <h2>Exercise 3</h2>
+            <p>Network Error and HTTP 404</p>
+            <button id="wrongBtn">Test Wrong URL</button>
+            <button id="errorBtn">Test 404</button>
+            <div id="errorResult"></div>
+        </section>
+
+        <section class="card">
+            <h2>Exercise 4</h2>
+            <p>Promise.all - First Two Posts</p>
+            <button id="postsBtn">Load Posts</button>
+            <ul id="postsResult"></ul>
+        </section>
+
+        <section class="card">
+            <h2>Exercise 5</h2>
+            <p>Loading, Success and Error States</p>
+            <button id="loadBtn">Load API Data</button>
+
+            <div id="status" class="status">
+                Ready to load data.
+            </div>
+
+            <div id="result"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+.container {
+    width: min(92%, 900px);
+    margin: 40px auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #666;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+button {
+    padding: 10px 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    background: #087f5b;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#rateResult,
+#countryResult,
+#errorResult {
+    margin-top: 15px;
+}
+
+.status {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    background: #eee;
+}
+
+.success {
+    background: #d8f3dc;
+}
+
+.error {
+    background: #ffe3e3;
+    color: #9b2226;
+}
+
+.loading {
+    background: #fff3bf;
+}
+
+.country {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+#postsResult {
+    padding-left: 20px;
+}
+
+#postsResult li {
+    margin-bottom: 10px;
+}
