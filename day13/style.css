@@ -1,0 +1,78 @@
+:root {
+    --brand: hsl(212, 68%, 33%);
+    --brand-hover: hsl(212, 68%, 45%);
+    --accent: hsl(43, 69%, 49%);
+    --text: #1F2937;
+    --background: #F7FAFC;
+
+    --space-small: 8px;
+    --space: 16px;
+    --space-large: 24px;
+
+    --radius: 10px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--background);
+}
+
+.card {
+    max-width: 360px;
+    margin: 40px auto;
+    padding: var(--space-large);
+    border: 1px solid #E2E8F0;
+    border-radius: var(--radius);
+    background: white;
+}
+
+.location {
+    color: var(--brand);
+    font-weight: 600;
+}
+
+.location::before {
+    content: "●";
+    color: var(--accent);
+    margin-right: var(--space-small);
+}
+
+.card h1 {
+    margin: var(--space) 0;
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--brand);
+}
+
+.card p {
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: var(--space);
+    padding: 10px 18px;
+
+    background: var(--brand);
+    color: white;
+
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: var(--brand-hover);
+}

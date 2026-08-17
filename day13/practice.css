@@ -1,0 +1,80 @@
+
+
+:root {
+    --primary-color: #1B4D8E;
+    --secondary-color: #D4A027;
+    --spacing: 16px;
+    --font-stack: Arial, Helvetica, sans-serif;
+}
+
+button {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    padding: var(--spacing);
+    font-family: var(--font-stack);
+
+
+}
+
+
+
+
+.card {
+    width: 300px;
+    padding: 24px;
+    border: 2px solid black;
+    box-sizing: content-box;
+}
+
+
+
+
+
+p {
+    color: black;
+}
+
+.note {
+    color: blue;
+}
+
+#lead {
+    color: green;
+}
+
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #1B4D8E;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+}
+
+tr:nth-child(even) {
+    background-color: #F7FAFC;
+}
+
+
+
+
+.green:hover {
+    background-color: hsl(146, 51%, 50%);
+}
+
+.yellow:hover {
+    background-color: hsl(43, 69%, 62%);
+}
+
+.blue:hover {
+    background-color: hsl(212, 68%, 48%);
+}
