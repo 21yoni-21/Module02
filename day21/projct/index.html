@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validated Persistent Signup</title>
+</head>
+<body>
+
+    <main>
+        <h1>Validated Signup Form</h1>
+
+        <form id="signup">
+
+            <div>
+                <label for="name">Full Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your full name"
+                >
+            </div>
+
+            <br>
+
+            <div>
+                <label for="phone">Ethiopian Phone Number</label>
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="0912345678"
+                >
+            </div>
+
+            <br>
+
+            <button type="submit">Sign Up</button>
+
+            <p id="error"></p>
+            <p id="success"></p>
+
+        </form>
+
+        <section>
+            <h2>Saved Signups</h2>
+            <ul id="entries"></ul>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

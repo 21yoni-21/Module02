@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 21 - Storage and Forms</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <header>
+            <h1>Day 21 Exercises</h1>
+            <p>Storage, Forms & Regular Expressions</p>
+        </header>
+
+        <section class="card">
+            <h2>Exercise 1: Language Preference</h2>
+
+            <label for="lang">Choose Language</label>
+
+            <select id="lang">
+                <option value="en">English</option>
+                <option value="am">Amharic</option>
+            </select>
+
+            <p id="languageMessage"></p>
+        </section>
+
+        <section class="card">
+            <h2>Exercises 3–6: Signup Form</h2>
+
+            <form id="signup">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="0912345678 or +251912345678"
+                    >
+                </div>
+
+                <button type="submit">Sign Up</button>
+
+                <p id="error" role="alert"></p>
+
+                <p id="success"></p>
+
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Saved Entries</h2>
+
+            <ul id="entries"></ul>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
