@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exercise 4 - Page Grid</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .page {
+            min-height: 100vh;
+
+            display: grid;
+
+            grid-template-columns: 200px 1fr;
+
+            grid-template-rows: auto 1fr auto;
+
+            grid-template-areas:
+                "header header"
+                "sidebar main"
+                "footer footer";
+        }
+
+        header {
+            grid-area: header;
+            padding: 20px;
+            background: #1B4D8E;
+            color: white;
+        }
+
+        aside {
+            grid-area: sidebar;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        main {
+            grid-area: main;
+            padding: 20px;
+        }
+
+        footer {
+            grid-area: footer;
+            padding: 20px;
+            background: #333;
+            color: white;
+        }
+
+        @media (max-width: 700px) {
+
+            .page {
+                grid-template-columns: 1fr;
+
+                grid-template-areas:
+                    "header"
+                    "sidebar"
+                    "main"
+                    "footer";
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <header>
+            <h1>Habesha Market</h1>
+        </header>
+
+        <aside>
+            <h2>Sidebar</h2>
+            <p>Categories</p>
+            <p>Products</p>
+            <p>Offers</p>
+        </aside>
+
+        <main>
+            <h2>Main Content</h2>
+            <p>
+                Welcome to Habesha Market. Find traditional Ethiopian
+                products and services.
+            </p>
+        </main>
+
+        <footer>
+            <p>© 2026 Habesha Market</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exercise 3 - Photo Gallery</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .photo {
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1B4D8E;
+            color: white;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Ethiopian Photo Gallery</h1>
+
+    <section class="gallery">
+
+        <div class="photo">Addis Ababa</div>
+        <div class="photo">Bole</div>
+        <div class="photo">Mekelle</div>
+        <div class="photo">Lalibela</div>
+        <div class="photo">Axum</div>
+        <div class="photo">Gondar</div>
+
+    </section>
+
+</body>
+</html>

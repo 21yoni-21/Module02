@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exercise 5 - Sale Badge</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+        }
+
+        .product-card {
+            position: relative;
+
+            width: 300px;
+            padding: 25px;
+            margin: auto;
+
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+        }
+
+        .sale-badge {
+            position: absolute;
+
+            top: -15px;
+            right: -15px;
+
+            width: 80px;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #D4A027;
+            color: white;
+
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .product-card button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #1B4D8E;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <article class="product-card">
+
+        <div class="sale-badge">
+            ETB Sale
+        </div>
+
+        <h1>Ethiopian Coffee</h1>
+
+        <p>
+            Premium Ethiopian coffee beans from local producers.
+        </p>
+
+        <p>
+            <strong>500 ETB</strong>
+        </p>
+
+        <button type="button">Buy Now</button>
+
+    </article>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2 - Flex Cards</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1;
+            min-width: 200px;
+            padding: 25px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f7f7f7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Our Products</h1>
+
+    <div class="cards">
+
+        <article class="card">
+            <h2>Injera</h2>
+            <p>Traditional Ethiopian injera.</p>
+        </article>
+
+        <article class="card">
+            <h2>Coffee</h2>
+            <p>Fresh Ethiopian coffee.</p>
+        </article>
+
+        <article class="card">
+            <h2>Shiro</h2>
+            <p>Traditional Ethiopian shiro.</p>
+        </article>cd
+
+        <article class="card">
+            <h2>Honey</h2>
+            <p>Natural Ethiopian honey.</p>
+        </article>
+
+    </div>
+
+</body>
+</html>
