@@ -1,0 +1,135 @@
+/* =========================
+   BASIC RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f7f7f7;
+    color: #222;
+}
+
+
+/* =========================
+   MENU SECTION
+========================= */
+
+.menu {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+.menu h1 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+/* =========================
+   MOBILE-FIRST MENU
+   ONE COLUMN BY DEFAULT
+========================= */
+
+.menu-grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+}
+
+
+/* =========================
+   MENU CARD
+========================= */
+
+.menu-card {
+    padding: 24px;
+
+    background-color: white;
+
+    border: 1px solid #ddd;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+    /* Animation */
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.menu-card h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.menu-card p {
+    margin-bottom: 15px;
+}
+
+.menu-card strong {
+    font-size: 1.1rem;
+}
+
+
+/* =========================
+   HOVER ANIMATION
+========================= */
+
+.menu-card:hover {
+    transform: translateY(-6px) scale(1.02);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================
+   TABLET
+   768px = TWO COLUMNS
+========================= */
+
+@media (min-width: 768px) {
+
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================
+   DESKTOP
+   1024px = THREE COLUMNS
+========================= */
+
+@media (min-width: 1024px) {
+
+    .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .menu-card {
+        transition: none;
+    }
+
+    .menu-card:hover {
+        transform: none;
+    }
+
+}
