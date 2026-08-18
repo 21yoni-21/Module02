@@ -1,0 +1,85 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addis Eats | Ethiopian Food</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <h1>Addis Eats</h1>
+            <p>Ethiopian Food Ordering</p>
+
+            <label for="search">Search dishes</label>
+            <input
+                type="search"
+                id="search"
+                placeholder="Search dishes..."
+            >
+        </div>
+    </header>
+
+    <main class="container main-layout">
+
+        <section id="menu" aria-label="Menu">
+            <div class="section-heading">
+                <h2>Our Menu</h2>
+                <p>Choose your favorite Ethiopian dishes.</p>
+            </div>
+
+            <div class="menu-grid">
+
+                <article class="dish-card">
+                    <div class="dish-image">
+                        <span>🍛</span>
+                    </div>
+
+                    <div class="dish-content">
+                        <p class="category">Main</p>
+                        <h3>Doro Wat</h3>
+                        <p class="description">
+                            Traditional Ethiopian chicken stew served with injera.
+                        </p>
+
+                        <div class="dish-footer">
+                            <strong>240 ETB</strong>
+                            <button type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <aside id="cart" aria-label="Your order">
+            <div class="cart-header">
+                <h2>Your Order</h2>
+                <span class="cart-count">0</span>
+            </div>
+
+            <div class="cart-content">
+                <p>Your cart is empty.</p>
+            </div>
+
+            <div class="cart-total">
+                <span>Total</span>
+                <strong>0 ETB</strong>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Addis Eats · Bole, Addis Ababa</p>
+            <p>Order with TeleBirr</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+```
