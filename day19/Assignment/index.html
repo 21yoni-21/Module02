@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Shopping List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+        <h1>Grocery Shopping List</h1>
+
+        <form id="itemForm">
+            <input
+                type="text"
+                id="itemInput"
+                placeholder="Enter grocery item"
+                required
+            >
+            <button type="submit">Add Item</button>
+        </form>
+
+        <section class="list-section">
+            <div class="list-header">
+                <h2>My Shopping List</h2>
+                <span id="itemCount">0 items</span>
+            </div>
+
+            <ul id="shoppingList"></ul>
+
+            <p id="emptyMessage">Your shopping list is empty.</p>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

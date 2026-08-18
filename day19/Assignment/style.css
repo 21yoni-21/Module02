@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+    color: #222;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #2e7d32;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#itemInput {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+}
+
+#itemInput:focus {
+    border-color: #2e7d32;
+}
+
+form button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #2e7d32;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+form button:hover {
+    background: #256628;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.list-header h2 {
+    font-size: 20px;
+}
+
+#itemCount {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+#shoppingList {
+    list-style: none;
+}
+
+.shopping-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 14px;
+    margin-bottom: 10px;
+    background: #f8f9fa;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+}
+
+.item-name {
+    flex: 1;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.shopping-item.bought .item-name {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.item-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.item-actions button {
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: white;
+}
+
+.buy-button {
+    background: #1976d2;
+}
+
+.buy-button:hover {
+    background: #1565c0;
+}
+
+.remove-button {
+    background: #d32f2f;
+}
+
+.remove-button:hover {
+    background: #b71c1c;
+}
+
+#emptyMessage {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    form button {
+        width: 100%;
+    }
+
+    .shopping-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .item-actions {
+        width: 100%;
+    }
+
+    .item-actions button {
+        flex: 1;
+    }
+}
