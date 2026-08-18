@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 40px 20px;
+    color: #222;
+}
+
+body > h1,
+body > p,
+body > form,
+body > h2,
+body > ul {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#status {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    gap: 10px;
+}
+
+input,
+select,
+button {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+input {
+    width: 40%;
+}
+
+select {
+    width: 30%;
+    background: white;
+}
+
+button {
+    width: 30%;
+    background: #222;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #444;
+}
+
+#result {
+    background: rgba(255, 255, 255, 0.904);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+h2 {
+    margin-top: 60px;
+}
+
+#watchlist {
+    list-style: none;
+    padding: 0;
+}
+
+#watchlist li {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 600px) {
+    form {
+        flex-direction: column;
+    }
+
+    input,
+    select,
+    button {
+        width: 100%;
+    }
+}  
+
+
+
+
+
