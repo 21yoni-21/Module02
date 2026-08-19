@@ -1,53 +1,80 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Addis Eats | Ethiopian Food</title>
-    <link rel="stylesheet" href="./style.css">
+    <meta name="description" content="Addis Eats Ethiopian food ordering app">
+    <title>Addis Eats</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="container">
-            <h1>Addis Eats</h1>
-            <p>Ethiopian Food Ordering</p>
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">Addis Eats</a>
 
-            <label for="search">Search dishes</label>
-            <input
-                type="search"
-                id="search"
-                placeholder="Search dishes..."
-            >
+            <div class="search-box">
+                <label for="search">Search dishes</label>
+                <input 
+                    type="search" 
+                    id="search" 
+                    placeholder="Search dishes..."
+                >
+            </div>
         </div>
     </header>
 
     <main class="container main-layout">
 
-        <section id="menu" aria-label="Menu">
+        <section class="menu-section" aria-labelledby="menu-title">
             <div class="section-heading">
-                <h2>Our Menu</h2>
-                <p>Choose your favorite Ethiopian dishes.</p>
+                <div>
+                    <p class="section-label">Taste of Ethiopia</p>
+                    <h1 id="menu-title">Our Menu</h1>
+                </div>
+                <span class="menu-count">Popular dishes</span>
             </div>
 
-            <div class="menu-grid">
+            <div id="menu" class="menu-grid">
 
                 <article class="dish-card">
                     <div class="dish-image">
-                        <span>🍛</span>
+                        <span class="dish-placeholder">Doro Wat</span>
                     </div>
 
                     <div class="dish-content">
-                        <p class="category">Main</p>
-                        <h3>Doro Wat</h3>
+                        <span class="category">Main</span>
+                        <h2>Doro Wat</h2>
                         <p class="description">
-                            Traditional Ethiopian chicken stew served with injera.
+                            Traditional Ethiopian spicy chicken stew served with injera.
                         </p>
 
                         <div class="dish-footer">
-                            <strong>240 ETB</strong>
-                            <button type="button">Add to Cart</button>
+                            <span class="price">240 ETB</span>
+                            <button type="button" class="add-button">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="dish-card">
+                    <div class="dish-image">
+                        <span class="dish-placeholder">Shiro</span>
+                    </div>
+
+                    <div class="dish-content">
+                        <span class="category vegetarian">Vegetarian</span>
+                        <h2>Shiro</h2>
+                        <p class="description">
+                            Smooth and flavorful chickpea stew served with fresh injera.
+                        </p>
+
+                        <div class="dish-footer">
+                            <span class="price">120 ETB</span>
+                            <button type="button" class="add-button">
+                                Add
+                            </button>
                         </div>
                     </div>
                 </article>
@@ -55,31 +82,53 @@
             </div>
         </section>
 
-        <aside id="cart" aria-label="Your order">
+        <aside id="cart" class="cart-section" aria-labelledby="cart-title">
             <div class="cart-header">
-                <h2>Your Order</h2>
-                <span class="cart-count">0</span>
+                <div>
+                    <p class="section-label">Your order</p>
+                    <h2 id="cart-title">Cart</h2>
+                </div>
+
+                <span class="cart-badge">0</span>
             </div>
 
-            <div class="cart-content">
-                <p>Your cart is empty.</p>
+            <div class="cart-empty">
+                <div class="cart-icon">🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Add dishes from the menu to start your order.</p>
             </div>
 
-            <div class="cart-total">
-                <span>Total</span>
-                <strong>0 ETB</strong>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Total</span>
+                    <strong>0 ETB</strong>
+                </div>
+
+                <button type="button" class="checkout-button">
+                    Checkout
+                </button>
             </div>
         </aside>
 
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>Addis Eats · Bole, Addis Ababa</p>
-            <p>Order with TeleBirr</p>
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h2>Addis Eats</h2>
+                <p>Authentic Ethiopian food, made with tradition.</p>
+            </div>
+
+            <div class="footer-info">
+                <p>Bole, Addis Ababa</p>
+                <p>TeleBirr available</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Addis Eats. All rights reserved.</p>
         </div>
     </footer>
 
 </body>
 </html>
-```
