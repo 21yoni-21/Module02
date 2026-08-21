@@ -1,22 +1,58 @@
 [
-  { "id": 1, "name": "Doro Wat", "category": "Main", "price": 240, "spicy": true },
-  { "id": 2, "name": "Shiro", "category": "Vegetarian", "price": 120, "spicy": false },
-  { "id": 3, "name": "Kitfo", "category": "Main", "price": 320, "spicy": true },
-  { "id": 4, "name": "Tibs", "category": "Main", "price": 280, "spicy": true },
-  { "id": 5, "name": "Injera Firfir", "category": "Breakfast", "price": 100, "spicy": true },
-  { "id": 6, "name": "Beyaynetu", "category": "Vegetarian", "price": 150, "spicy": false },
-  { "id": 7, "name": "Misir Wat", "category": "Vegetarian", "price": 110, "spicy": true },
-  { "id": 8, "name": "Gomen", "category": "Vegetarian", "price": 90, "spicy": false },
-  { "id": 9, "name": "Atkilt Wot", "category": "Vegetarian", "price": 100, "spicy": false },
-  { "id": 10, "name": "Derek Tibs", "category": "Main", "price": 310, "spicy": true },
-  { "id": 11, "name": "Key Wat", "category": "Main", "price": 220, "spicy": true },
-  { "id": 12, "name": "Alicha Wat", "category": "Main", "price": 210, "spicy": false },
-  { "id": 13, "name": "Bozena Shiro", "category": "Main", "price": 180, "spicy": true },
-  { "id": 14, "name": "Ayibe", "category": "Side", "price": 70, "spicy": false },
-  { "id": 15, "name": "Kocho", "category": "Side", "price": 60, "spicy": false },
-  { "id": 16, "name": "Enkulal Firfir", "category": "Breakfast", "price": 110, "spicy": true },
-  { "id": 17, "name": "Fuul", "category": "Breakfast", "price": 90, "spicy": true },
-  { "id": 18, "name": "Genfo", "category": "Breakfast", "price": 130, "spicy": true },
-  { "id": 19, "name": "Chechebsa", "category": "Breakfast", "price": 120, "spicy": true },
-  { "id": 20, "name": "Kik Alicha", "category": "Vegetarian", "price": 100, "spicy": false }
+  {
+    "id": 1,
+    "name": "Doro Wat",
+    "category": "Main",
+    "price": 240,
+    "spicy": true,
+    "image": "https://gypsyplate.com/wp-content/uploads/2024/10/doro-wat_10-1024x1536.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Shiro",
+    "category": "Vegetarian",
+    "price": 120,
+    "spicy": false,
+    "image": "https://holycowvegan.net/wp-content/uploads/2023/02/ethiopian-shiro-recipe-1.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Kitfo",
+    "category": "Main",
+    "price": 280,
+    "spicy": true,
+    "image": "https://thetravelvirgin.com/wp-content/uploads/2021/11/Kitfo.webp"
+  },
+  {
+    "id": 4,
+    "name": "Tibs",
+    "category": "Main",
+    "price": 260,
+    "spicy": true,
+    "image": "https://www.flyingfourchette.com/wp-content/uploads/2019/12/Addis-Ababa-Meat-2-1024x731.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Injera Firfir",
+    "category": "Breakfast",
+    "price": 150,
+    "spicy": true,
+    "image": "https://mesob.binaryabyssinia.com/images/recipes/quanta-firfir-icon.webp"
+  },
+  {
+    "id": 6,
+    "name": "Beyaynetu",
+    "category": "Vegetarian",
+    "price": 220,
+    "spicy": false,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Injera_with_eight_kinds_of_stew.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Misir Wat",
+    "category": "Vegetarian",
+    "price": 130,
+    "spicy": true,
+    "image": "https://urbanfarmie.com/wp-content/uploads/Miser-Wot-Featured-Image-1x1-1.jpg"
+  }
 ]

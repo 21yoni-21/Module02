@@ -1,21 +1,28 @@
-const STORAGE_KEY = "addis-eats-cart";
-const PHONE_PATTERN = /^(?:\+251|0)9\d{8}$/;
-
 const state = {
     dishes: [],
     cart: [],
     search: ""
 };
 
+const STORAGE_KEY = "addis-eats-cart";
+const PHONE_PATTERN = /^(?:\+251|0)9\d{8}$/;
+
 const searchInput = document.querySelector("#search");
 const menuEl = document.querySelector("#menu");
 const menuCountEl = document.querySelector("#menu-count");
 const menuStatusEl = document.querySelector("#menu-status");
 const cartEl = document.querySelector("#cart");
+const cartCountEl = document.querySelector("#cart-count");
+const totalEl = document.querySelector("#cart-total");
+
 const checkoutForm = document.querySelector("#checkout");
 const nameInput = document.querySelector("#name");
 const phoneInput = document.querySelector("#phone");
 const areaInput = document.querySelector("#area");
+
+const nameError = document.querySelector("#name-error");
+const phoneError = document.querySelector("#phone-error");
+const areaError = document.querySelector("#area-error");
 const formError = document.querySelector("#form-error");
 const orderSuccess = document.querySelector("#order-success");
 
@@ -62,13 +69,14 @@ async function loadMenu() {
         const dishes = await response.json();
 
         if (!Array.isArray(dishes)) {
-            throw new Error("Menu data is invalid.");
+            throw new Error("Menu data is not valid.");
         }
 
         state.dishes = dishes;
 
-        render();
+        menuStatusEl.textContent = "";
 
+        render();
     } catch (error) {
         console.error(error);
 
@@ -76,16 +84,32 @@ async function loadMenu() {
             "Could not load the menu. Please try again.";
 
         menuCountEl.textContent = "Menu unavailable";
+
+        menuEl.innerHTML = `
+            <div class="empty-state">
+                <p>We could not load the menu.</p>
+                <button id="retry-menu" class="add-button">
+                    Try Again
+                </button>
+            </div>
+        `;
     }
 }
 
 function getFilteredDishes() {
+    const searchText = state.search;
+
+    if (!searchText) {
+        return state.dishes;
+    }
+
     return state.dishes.filter(dish => {
-        const searchText = state.search;
+        const name = String(dish.name || "").toLowerCase();
+        const category = String(dish.category || "").toLowerCase();
 
         return (
-            dish.name.toLowerCase().includes(searchText) ||
-            dish.category.toLowerCase().includes(searchText)
+            name.includes(searchText) ||
+            category.includes(searchText)
         );
     });
 }
@@ -98,121 +122,77 @@ function render() {
 function renderMenu() {
     const filteredDishes = getFilteredDishes();
 
-    if (state.dishes.length === 0) {
-        menuEl.innerHTML = "";
-        menuStatusEl.textContent = "No dishes available.";
+    if (filteredDishes.length === 0) {
+        menuEl.innerHTML = `
+            <div class="empty-state">
+                <p>No dishes found.</p>
+            </div>
+        `;
+
         menuCountEl.textContent = "0 dishes";
         return;
     }
 
-    if (filteredDishes.length === 0) {
-        menuEl.innerHTML = `
-            <div class="no-results">
-                <h2>No dishes found</h2>
-                <p>Try another search term.</p>
-            </div>
-        `;
-
-        menuStatusEl.textContent = "";
-        menuCountEl.textContent = "0 results";
-        return;
-    }
-
-    menuStatusEl.textContent = "";
-
-    menuCountEl.textContent =
-        `${filteredDishes.length} dish${filteredDishes.length === 1 ? "" : "es"}`;
-
     menuEl.innerHTML = filteredDishes.map(dish => `
         <article class="dish-card">
-
-            <div class="dish-image">
-                <span class="dish-placeholder">
-                    ${dish.name}
-                </span>
-            </div>
+            <img
+                class="dish-image"
+                src="${dish.image || ""}"
+                alt="${dish.name}"
+                loading="lazy"
+            >
 
             <div class="dish-content">
-
-                <span class="category">
+                <span class="dish-category">
                     ${dish.category}
                 </span>
 
-                <h2>${dish.name}</h2>
+                <h3>${dish.name}</h3>
 
-                <p class="description">
-                    ${getDishDescription(dish)}
+                <p class="dish-price">
+                    ${dish.price} ETB
                 </p>
 
-                <div class="dish-footer">
+                ${
+                    dish.spicy
+                        ? `<span class="spicy">🌶️ Spicy</span>`
+                        : ""
+                }
 
-                    <div class="price-area">
-                        <span class="price">
-                            ${dish.price} ETB
-                        </span>
-
-                        ${
-                            dish.spicy
-                                ? '<span class="spicy">🌶 Spicy</span>'
-                                : ""
-                        }
-                    </div>
-
-                    <button
-                        type="button"
-                        class="add-button"
-                        data-action="add"
-                        data-id="${dish.id}"
-                    >
-                        Add
-                    </button>
-
-                </div>
-
+                <button
+                    class="add-button"
+                    data-id="${dish.id}"
+                    type="button"
+                >
+                    Add to Cart
+                </button>
             </div>
-
         </article>
     `).join("");
-}
 
-function getDishDescription(dish) {
-    const descriptions = {
-        "Doro Wat":
-            "Traditional Ethiopian chicken stew with berbere and spices.",
-        "Shiro":
-            "Smooth chickpea stew served with fresh Ethiopian injera.",
-        "Kitfo":
-            "Seasoned Ethiopian minced beef prepared with traditional spices.",
-        "Tibs":
-            "Tender sautéed meat prepared with onions, peppers and spices.",
-        "Injera Firfir":
-            "Pieces of injera mixed with flavorful berbere sauce.",
-        "Beyaynetu":
-            "A colorful combination of Ethiopian vegetarian dishes.",
-        "Misir Wat":
-            "Spicy Ethiopian red lentil stew cooked with berbere."
-    };
-
-    return descriptions[dish.name] ||
-        "A delicious Ethiopian dish prepared with traditional flavors.";
+    menuCountEl.textContent =
+        `${filteredDishes.length} ${filteredDishes.length === 1 ? "dish" : "dishes"}`;
 }
 
 function addToCart(id) {
-    const dish = state.dishes.find(item => item.id === id);
+    const dish = state.dishes.find(item => Number(item.id) === Number(id));
 
     if (!dish) {
+        console.error("Dish not found:", id);
         return;
     }
 
-    const existingItem = state.cart.find(item => item.id === id);
+    const existingItem = state.cart.find(
+        item => Number(item.id) === Number(id)
+    );
 
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
         state.cart.push({
-            id: dish.id,
+            id: Number(dish.id),
             name: dish.name,
-            price: dish.price,
+            price: Number(dish.price) || 0,
             quantity: 1
         });
     }
@@ -222,7 +202,9 @@ function addToCart(id) {
 }
 
 function changeQuantity(id, amount) {
-    const item = state.cart.find(cartItem => cartItem.id === id);
+    const item = state.cart.find(
+        cartItem => Number(cartItem.id) === Number(id)
+    );
 
     if (!item) {
         return;
@@ -232,7 +214,7 @@ function changeQuantity(id, amount) {
 
     if (item.quantity <= 0) {
         state.cart = state.cart.filter(
-            cartItem => cartItem.id !== id
+            cartItem => Number(cartItem.id) !== Number(id)
         );
     }
 
@@ -242,66 +224,45 @@ function changeQuantity(id, amount) {
 
 function removeFromCart(id) {
     state.cart = state.cart.filter(
-        item => item.id !== id
+        item => Number(item.id) !== Number(id)
     );
 
     saveCart();
     renderCart();
 }
 
-function cartTotal() {
-    return state.cart.reduce((total, item) => {
-        return total + item.price * item.quantity;
+function cartItemCount() {
+    return state.cart.reduce((count, item) => {
+        return count + Number(item.quantity || 0);
     }, 0);
 }
 
-function cartItemCount() {
-    return state.cart.reduce((count, item) => {
-        return count + item.quantity;
+function cartTotal() {
+    return state.cart.reduce((total, item) => {
+        const price = Number(item.price) || 0;
+        const quantity = Number(item.quantity) || 0;
+
+        return total + price * quantity;
     }, 0);
 }
 
 function renderCart() {
+    const count = cartItemCount();
+    const total = cartTotal();
+
+    if (cartCountEl) {
+        cartCountEl.textContent = count;
+    }
+
+    if (totalEl) {
+        totalEl.textContent = `${total.toFixed(2)} ETB`;
+    }
+
     if (state.cart.length === 0) {
         cartEl.innerHTML = `
-            <div class="cart-header">
-
-                <div>
-                    <p class="section-label">Your order</p>
-                    <h2 id="cart-title">Cart</h2>
-                </div>
-
-                <span class="cart-badge">0</span>
-
-            </div>
-
-            <div class="cart-empty">
-
-                <div class="cart-icon">🛒</div>
-
-                <h3>Your cart is empty</h3>
-
-                <p>
-                    Add dishes from the menu to start your order.
-                </p>
-
-            </div>
-
-            <div class="cart-summary">
-
-                <div class="summary-row">
-                    <span>Total</span>
-                    <strong>0 ETB</strong>
-                </div>
-
-                <button
-                    type="button"
-                    class="checkout-button"
-                    disabled
-                >
-                    Checkout
-                </button>
-
+            <div class="empty-cart">
+                <p>Your cart is empty.</p>
+                <p>Add some delicious Ethiopian food!</p>
             </div>
         `;
 
@@ -309,63 +270,38 @@ function renderCart() {
     }
 
     cartEl.innerHTML = `
-        <div class="cart-header">
-
-            <div>
-                <p class="section-label">Your order</p>
-                <h2 id="cart-title">Cart</h2>
-            </div>
-
-            <span class="cart-badge">
-                ${cartItemCount()}
-            </span>
-
-        </div>
-
         <div class="cart-items">
-
             ${state.cart.map(item => `
                 <div class="cart-item">
-
                     <div class="cart-item-info">
-                        <h3>${item.name}</h3>
-
-                        <p>
-                            ${item.price} ETB each
-                        </p>
+                        <h4>${item.name}</h4>
+                        <p>${item.price} ETB each</p>
                     </div>
 
-                    <div class="cart-item-actions">
+                    <div class="cart-item-controls">
+                        <button
+                            type="button"
+                            class="quantity-button"
+                            data-action="decrease"
+                            data-id="${item.id}"
+                            aria-label="Decrease ${item.name} quantity"
+                        >
+                            −
+                        </button>
 
-                        <div class="quantity-controls">
+                        <span class="quantity">
+                            ${item.quantity}
+                        </span>
 
-                            <button
-                                type="button"
-                                class="quantity-button"
-                                data-action="decrease"
-                                data-id="${item.id}"
-                                aria-label="Decrease ${item.name} quantity"
-                            >
-                                −
-                            </button>
-
-                            <span>${item.quantity}</span>
-
-                            <button
-                                type="button"
-                                class="quantity-button"
-                                data-action="increase"
-                                data-id="${item.id}"
-                                aria-label="Increase ${item.name} quantity"
-                            >
-                                +
-                            </button>
-
-                        </div>
-
-                        <strong>
-                            ${item.price * item.quantity} ETB
-                        </strong>
+                        <button
+                            type="button"
+                            class="quantity-button"
+                            data-action="increase"
+                            data-id="${item.id}"
+                            aria-label="Increase ${item.name} quantity"
+                        >
+                            +
+                        </button>
 
                         <button
                             type="button"
@@ -375,42 +311,41 @@ function renderCart() {
                         >
                             Remove
                         </button>
-
                     </div>
 
+                    <strong class="item-total">
+                        ${(item.price * item.quantity).toFixed(2)} ETB
+                    </strong>
                 </div>
             `).join("")}
-
         </div>
 
         <div class="cart-summary">
-
-            <div class="summary-row">
-                <span>Total</span>
-                <strong>${cartTotal()} ETB</strong>
-            </div>
-
-            <button
-                type="button"
-                class="checkout-button"
-                onclick="document.querySelector('#checkout').scrollIntoView({ behavior: 'smooth' })"
-            >
-                Checkout
-            </button>
-
+            <strong>Total: ${total.toFixed(2)} ETB</strong>
         </div>
     `;
 }
 
 function clearErrors() {
-    document.querySelector("#name-error").textContent = "";
-    document.querySelector("#phone-error").textContent = "";
-    document.querySelector("#area-error").textContent = "";
-    formError.textContent = "";
+    if (nameError) {
+        nameError.textContent = "";
+    }
 
-    nameInput.classList.remove("input-error");
-    phoneInput.classList.remove("input-error");
-    areaInput.classList.remove("input-error");
+    if (phoneError) {
+        phoneError.textContent = "";
+    }
+
+    if (areaError) {
+        areaError.textContent = "";
+    }
+
+    if (formError) {
+        formError.textContent = "";
+    }
+
+    nameInput?.classList.remove("input-error");
+    phoneInput?.classList.remove("input-error");
+    areaInput?.classList.remove("input-error");
 }
 
 function validateCheckout() {
@@ -420,10 +355,10 @@ function validateCheckout() {
 
     const name = nameInput.value.trim();
     const phone = phoneInput.value.trim();
-    const area = areaInput.value;
+    const area = areaInput.value.trim();
 
     if (name.length < 2) {
-        document.querySelector("#name-error").textContent =
+        nameError.textContent =
             "Please enter your name.";
 
         nameInput.classList.add("input-error");
@@ -432,7 +367,7 @@ function validateCheckout() {
     }
 
     if (!PHONE_PATTERN.test(phone)) {
-        document.querySelector("#phone-error").textContent =
+        phoneError.textContent =
             "Enter a valid Ethiopian phone number.";
 
         phoneInput.classList.add("input-error");
@@ -441,7 +376,7 @@ function validateCheckout() {
     }
 
     if (!area) {
-        document.querySelector("#area-error").textContent =
+        areaError.textContent =
             "Please select your delivery area.";
 
         areaInput.classList.add("input-error");
@@ -451,7 +386,7 @@ function validateCheckout() {
 
     if (state.cart.length === 0) {
         formError.textContent =
-            "Your cart is empty. Add an item before placing your order.";
+            "Your cart is empty. Please add an item first.";
 
         valid = false;
     }
@@ -466,15 +401,20 @@ function placeOrder() {
             phone: phoneInput.value.trim(),
             area: areaInput.value
         },
+
         items: state.cart.map(item => ({
             id: item.id,
             name: item.name,
             price: item.price,
             quantity: item.quantity
         })),
+
         total: cartTotal(),
+
         createdAt: new Date().toISOString()
     };
+
+    console.log("Order:", order);
 
     state.cart = [];
 
@@ -483,52 +423,19 @@ function placeOrder() {
 
     checkoutForm.reset();
 
-    orderSuccess.hidden = false;
+    if (orderSuccess) {
+        orderSuccess.hidden = false;
+        orderSuccess.textContent =
+            `Order placed successfully! Total: ${order.total.toFixed(2)} ETB`;
+    }
 
-    orderSuccess.innerHTML = `
-        <div class="success-icon">✓</div>
-
-        <h3>Order placed successfully!</h3>
-
-        <p>
-            Thank you, ${escapeHtml(order.customer.name)}.
-        </p>
-
-        <p>
-            Your order will be delivered to
-            <strong>${escapeHtml(order.customer.area)}</strong>.
-        </p>
-
-        <p>
-            Total:
-            <strong>${order.total} ETB</strong>
-        </p>
-
-        <button
-            type="button"
-            class="new-order-button"
-            id="new-order"
-        >
-            Start New Order
-        </button>
-    `;
-
-    orderSuccess.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
     });
 }
 
-function escapeHtml(value) {
-    return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-}
-
-searchInput.addEventListener("input", () => {
+searchInput?.addEventListener("input", () => {
     state.search = searchInput.value
         .trim()
         .toLowerCase();
@@ -536,8 +443,8 @@ searchInput.addEventListener("input", () => {
     renderMenu();
 });
 
-menuEl.addEventListener("click", event => {
-    const button = event.target.closest("[data-action='add']");
+menuEl?.addEventListener("click", event => {
+    const button = event.target.closest(".add-button");
 
     if (!button) {
         return;
@@ -548,8 +455,16 @@ menuEl.addEventListener("click", event => {
     addToCart(id);
 });
 
-cartEl.addEventListener("click", event => {
-    const button = event.target.closest("[data-action]");
+menuEl?.addEventListener("click", event => {
+    if (event.target.id !== "retry-menu") {
+        return;
+    }
+
+    loadMenu();
+});
+
+cartEl?.addEventListener("click", event => {
+    const button = event.target.closest("button");
 
     if (!button) {
         return;
@@ -571,10 +486,12 @@ cartEl.addEventListener("click", event => {
     }
 });
 
-checkoutForm.addEventListener("submit", event => {
+checkoutForm?.addEventListener("submit", event => {
     event.preventDefault();
 
-    orderSuccess.hidden = true;
+    if (orderSuccess) {
+        orderSuccess.hidden = true;
+    }
 
     if (!validateCheckout()) {
         return;
@@ -583,11 +500,12 @@ checkoutForm.addEventListener("submit", event => {
     placeOrder();
 });
 
-orderSuccess.addEventListener("click", event => {
-    if (event.target.id === "new-order") {
-        orderSuccess.hidden = true;
-        nameInput.focus();
-    }
+[nameInput, phoneInput, areaInput].forEach(input => {
+    input?.addEventListener("input", () => {
+        if (orderSuccess) {
+            orderSuccess.hidden = true;
+        }
+    });
 });
 
 loadCart();
