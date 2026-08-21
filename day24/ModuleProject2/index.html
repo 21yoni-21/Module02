@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Addis Eats Ethiopian food ordering application">
+    <title>Addis Eats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-content">
+            <a href="#" class="logo">Addis Eats</a>
+
+            <div class="search-box">
+                <label for="search">Search dishes</label>
+                <input
+                    type="search"
+                    id="search"
+                    placeholder="Search dishes..."
+                    autocomplete="off"
+                >
+            </div>
+        </div>
+    </header>
+
+    <main class="container main-layout">
+
+        <section class="menu-section" aria-labelledby="menu-title">
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">Taste of Ethiopia</p>
+                    <h1 id="menu-title">Our Menu</h1>
+                </div>
+
+                <span id="menu-count" class="menu-count">
+                    Loading menu...
+                </span>
+            </div>
+
+            <p id="menu-status" class="status" aria-live="polite">
+                Loading menu...
+            </p>
+
+            <div id="menu" class="menu-grid"></div>
+
+        </section>
+
+        <aside id="cart" class="cart-section" aria-labelledby="cart-title">
+        </aside>
+
+    </main>
+
+    <section class="checkout-section container" aria-labelledby="checkout-title">
+
+        <div class="checkout-card">
+
+            <div class="checkout-heading">
+                <p class="section-label">Complete your order</p>
+                <h2 id="checkout-title">Checkout</h2>
+                <p>
+                    Enter your delivery information to place your order.
+                </p>
+            </div>
+
+            <form id="checkout" novalidate>
+
+                <div class="form-group">
+                    <label for="name">Full name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        autocomplete="name"
+                        placeholder="Enter your name"
+                    >
+                    <small id="name-error" class="field-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">TeleBirr phone</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        autocomplete="tel"
+                        placeholder="09xxxxxxxx"
+                    >
+                    <small id="phone-error" class="field-error"></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="area">Delivery area</label>
+
+                    <select id="area" name="area">
+                        <option value="">Select delivery area</option>
+                        <option value="Bole">Bole</option>
+                        <option value="Kazanchis">Kazanchis</option>
+                        <option value="Megenagna">Megenagna</option>
+                        <option value="Piassa">Piassa</option>
+                        <option value="CMC">CMC</option>
+                        <option value="Mexico">Mexico</option>
+                    </select>
+
+                    <small id="area-error" class="field-error"></small>
+                </div>
+
+                <p
+                    id="form-error"
+                    class="form-error"
+                    aria-live="polite"
+                ></p>
+
+                <button type="submit" class="place-order-button">
+                    Place Order
+                </button>
+
+            </form>
+
+            <div
+                id="order-success"
+                class="order-success"
+                aria-live="polite"
+                hidden
+            ></div>
+
+        </div>
+
+    </section>
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div>
+                <h2>Addis Eats</h2>
+                <p>
+                    Authentic Ethiopian food, made with tradition.
+                </p>
+            </div>
+
+            <div class="footer-info">
+                <p>Bole, Addis Ababa</p>
+                <p>TeleBirr available</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Addis Eats. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
